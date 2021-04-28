@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package user;
+option go_package = "user";
+
+service UserService {
+    rpc GetUserByName(GetUserReq) returns (User) {}
+    rpc AddUser(User) returns (CommonUserRes) {}
+    rpc DelUserByName(DelUserReq) returns (CommonUserRes) {}
+}
+
+message GetUserReq {
+    string name = 1;
+}
+
+message DelUserReq {
+    string name = 1;
+}
+
+message CommonUserRes {
+    int32 code = 1;
+    string msg = 2;
+}
+
+message User {
+    string name = 1;
+    int32 age = 2;
+    int32 hight = 3;
+    enum Gender {
+        Male = 0;
+        Female = 1;
+    }
+    Gender gender = 4;
+}
